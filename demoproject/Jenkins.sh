@@ -9,7 +9,8 @@ pipeline{
   stages{
      stage('Checkout'){
         steps{
-          git 'https://github.com/msc6281/Springboot-Docker-Jenkins'
+            git branch : 'main',
+              url:'https://github.com/msc6281/Springboot-Docker-Jenkins'
         }
      }
      stage('Build'){
