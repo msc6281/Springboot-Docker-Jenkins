@@ -6,6 +6,20 @@ docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 # install docker in jenkins pipeline
 apt-get update && apt-get install -y docker.io
 
+# ✅ With optimization
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends curl && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+# in docker buildAvoids stale cached layers
+--no-cache 
+# Installs only required packages
+--no-install-recommends 
+# Removes package cacherm
+apt-get clean 
+# Removes apt lists
+-rf /var/lib/apt/lists/* 
+
 # Start Jenkins
 docker start jenkins
 
